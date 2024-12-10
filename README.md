@@ -27,6 +27,7 @@ Here are a few mock screenshots of the app's design:
 ![image](https://github.com/user-attachments/assets/78fbaad1-5247-4673-a951-e61fb4e2f92b)
 ![image](https://github.com/user-attachments/assets/051236bf-5e67-43f0-a329-a7cca5188b6a)
 ![image](https://github.com/user-attachments/assets/b5541e03-c37b-49bd-8832-7fd886251303)
+![image](https://github.com/user-attachments/assets/9cbf240f-adfd-4477-b7f6-83937165a4f0)
 
 
 ✏️ Contributions
