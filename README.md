@@ -1,8 +1,6 @@
 🎬 Movies at Your Fingertips
 A Netflix-like movie UI built with React. This project demonstrates a user-friendly interface for browsing movies, filtering by genre and rating, and managing a movie watchlist.
 
-⚠️ Note: This is a design-focused project and does not currently feature live data fetching or dynamic functionality.
-
 🚀 Project Features
 User Interface Design: A clean, responsive, and visually intuitive design.
 Search for Movies: A mock search bar for simulating user interaction.
