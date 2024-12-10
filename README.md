@@ -4,6 +4,7 @@ A Netflix-like movie UI built with React. This project demonstrates a user-frien
 🚀 Project Features
 User Interface Design: A clean, responsive, and visually intuitive design.
 Search for Movies: A mock search bar for simulating user interaction.
+Trailer: Ability to view the trailers for select movies.
 Filter by Genre/Rating: Example UI for filtering movies.
 Watchlist Mock-Up: Add movies to your personal watchlist seamlessly.
 
