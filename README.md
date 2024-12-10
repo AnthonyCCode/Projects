@@ -16,10 +16,10 @@ Styling: CSS
 To explore the app locally:
 
 in terminal;
-git clone https://github.com/tonyxed/projects.git
-cd projects
-npm install
-npm start
+git clone https://github.com/tonyxed/projects.git,
+cd projects,
+npm install,
+npm start,
 Then navigate to http://localhost:3000.
 
 📜 Screenshots
