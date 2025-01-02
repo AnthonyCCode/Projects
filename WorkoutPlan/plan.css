@@ -1,0 +1,113 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #504d4d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #000000;
+    text-align: center;
+}
+
+p {
+    color: #000000;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#plan-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#plan-list li {
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#progress-tracker {
+    margin-top: 20px;
+    display: none;
+    text-align: center;
+}
+
+#progress-tracker label {
+    margin-right: 10px;
+    text-align: center;
+}
+
+#progress-tracker input {
+    margin-right: 10px;
+    padding: 5px;
+    text-align: center;
+}
+
+#progress-tracker button {
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#progress-tracker button:hover {
+    background-color: #0056b3;
+}
+
+#progress-history {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#progress-history h2 {
+    color: #333;
+    text-align: center;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+#history-list li {
+    margin-bottom: 5px;
+    color: #000000;
+    text-align: center;
+}
+
+#average-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#average-container h2 {
+    color: #333;
+    text-align: center;
+}
+
+#average-message {
+    color: #000000;
+    margin-top: 5px;
+    text-align: center;
+}

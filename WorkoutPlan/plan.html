@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="plan.css">
+    <title>Your Plan</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="user-name-title">Your Custom Plan based on your Goals!</h1>
+        <p id="progress-message"></p>
+        <p id="group-message"></p>
+        <p id="edit-instructions">CLICK on a DAY to EDIT based on what you desire.</p>
+        <ul id="plan-list"></ul>
+        <div id="progress-tracker">
+            <label for="progress-week">Track Your Progress: </label>
+            <input type="number" id="progress-week" min="1" max="52" value="1">
+            <input type="text" id="progress-input" placeholder="Enter your weight">
+            <button onclick="updateProgress()">Update Progress</button>
+        </div>
+        <div id="progress-history">
+            <h2>Progress History</h2>
+            <ul id="history-list"></ul>
+            <div id="average-container">
+                <h2>7-Day Weight Change Average</h2>
+                <p id="average-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const planList = document.getElementById("plan-list");
+        const groupMessage = document.getElementById("group-message");
+        const progressMessage = document.getElementById("progress-message");
+        const editInstructions = document.getElementById("edit-instructions");
+        const progressInput = document.getElementById("progress-week");
+        const userInput = document.getElementById("progress-input");
+        const historyList = document.getElementById("history-list");
+        const averageMessage = document.getElementById("average-message");
+        const userGroup = new URLSearchParams(window.location.search).get("userGroup");
+        const progressData = {}; // store progress data for each week
+
+        function generatePlan() {
+
+            // fetch the custom plan based on the user's group
+            fetch('/custom_plan.json')
+                .then(response => response.json())
+                .then(plans => {
+
+                    // Check if user's group exists in the plans object
+                    if (plans.hasOwnProperty(`group${userGroup}`)) {
+                        const userPlan = plans[`group${userGroup}`];
+
+                        userPlan.forEach((item, index) => {
+                            const li = document.createElement("li");
+                            li.textContent = `Day ${index + 1}: ${item}`;
+                            li.addEventListener("click", () => editDay(index + 1));
+                            planList.appendChild(li);
+                        });
+                        console.log('Debug - userGroup:', userGroup);
+
+                        // display a message based on the user's group
+                        groupMessage.textContent = (userGroup === '1') ? 'You have been placed in group 1.' : '';
+                        groupMessage.textContent = (userGroup === '2') ? 'You have been placed in group 2.' : '';
+                        groupMessage.textContent = (userGroup === '3') ? 'You have been placed in group 3.' : '';
+                        groupMessage.textContent = (userGroup === '4') ? 'You have been placed in group 4.' : '';
+                        groupMessage.textContent = (userGroup === '5') ? 'You have been placed in group 5.' : '';
+                        groupMessage.textContent = (userGroup === '6') ? 'You have been placed in group 6.' : '';
+                        groupMessage.textContent = (userGroup === '7') ? 'You have been placed in group 7.' : '';
+                        groupMessage.textContent = (userGroup === '8') ? 'You have been placed in group 8.' : '';
+                        groupMessage.textContent = (userGroup === '9') ? 'You have been placed in group 9.' : '';
+                        groupMessage.textContent = (userGroup === '10') ? 'You have been placed in group 10.' : '';
+
+                        if (userGroup === '1') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '2') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '3') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '4') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '5') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '6') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '7') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '8') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '9') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } else if (userGroup === '10') {
+                            document.getElementById("progress-tracker").style.display = "block";
+                            updateProgress(); // initialize progress message
+                        } 
+                    } else {
+                        console.error('Invalid user group.');
+                        groupMessage.textContent = 'Invalid user group.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching custom plan:', error);
+                    groupMessage.textContent = 'Error fetching custom plan.';
+                });
+        }
+
+        //update progress
+        function updateProgress() {
+            const currentWeek = progressInput.value;
+            const progressValue = parseFloat(userInput.value);
+
+            // validate the input
+            if (currentWeek >= 1 && currentWeek <= 52 && !isNaN(progressValue) && progressValue >= 0) {
+                if (!progressData[currentWeek]) {
+                    progressData[currentWeek] = [];
+                }
+
+                progressData[currentWeek].push(progressValue);
+                displayProgressHistory();
+                calculateAverage();
+            }
+        }
+        //display progress history
+        function displayProgressHistory() {
+            historyList.innerHTML = "";
+            for (const week in progressData) {
+                const li = document.createElement("li");
+                li.textContent = `Week ${week}: ${progressData[week].join(', ')} lbs`;
+                historyList.appendChild(li);
+            }
+        }
+
+        //calculate and display the 7-day weight change average
+        function calculateAverage() {
+            const currentWeek = progressInput.value;
+            const weeksToConsider = 7; 
+            if (currentWeek >= weeksToConsider) {
+                const weeksArray = Array.from({ length: weeksToConsider }, (_, i) => parseInt(currentWeek) - i);
+                const totalWeightChange = weeksArray.reduce((acc, week) => {
+                    return acc + (progressData[week] ? progressData[week].reduce((a, b) => a + b, 0) : 0);
+                }, 0);
+
+                const averageChange = totalWeightChange / weeksToConsider;
+                averageMessage.textContent = `Your 7-day weight change average: ${averageChange.toFixed(2)} lbs`;
+            } else {
+                averageMessage.textContent = "Not enough data for the 7-day average. Track more weeks.";
+            }
+        }
+
+        //edit the days
+        function editDay(day) {
+            const newDayName = prompt(`Edit Item ${day}:`, `New Plan Item ${day}`);
+            if (newDayName !== null) {
+                // update the plan item in the UI
+                const listItem = document.querySelector(`#plan-list li:nth-child(${day})`);
+                listItem.textContent = newDayName;
+            }
+        }
+
+        generatePlan();
+    </script>
+</body>
+</html>
