@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import "../styles/InputField.css";
 
+//balance and input fields on the left side, with the charts and what not on the right side
+//have AI recommendations on like how much you should be spending with the balance
+//userprofile sign in sign out ?? python backend???
+
+
+
 const InputField = () => {
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
