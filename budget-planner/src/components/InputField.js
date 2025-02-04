@@ -5,8 +5,6 @@ import "../styles/InputField.css";
 //have AI recommendations on like how much you should be spending with the balance
 //userprofile sign in sign out ?? python backend???
 
-
-
 const InputField = () => {
   const [date, setDate] = useState("");
   const [category, setCategory] = useState("");
@@ -14,13 +12,14 @@ const InputField = () => {
   const [balance, setBalance] = useState(0);
   const [enteredBalance, setEnteredBalance] = useState("");
   const [theme, setTheme] = useState("light");
+  const [showSettings, setShowSettings] = useState(false)
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-     if (savedTheme) {
-      setTheme(savedTheme)
+    if (savedTheme) {
+      setTheme(savedTheme);
       document.documentElement.setAttribute("data-theme", savedTheme);
-     }
+    }
   }, []);
 
   const handleChangeDate = (event) => {
@@ -57,7 +56,6 @@ const InputField = () => {
     setDate("");
   };
 
-
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -67,17 +65,29 @@ const InputField = () => {
 
   return (
     <div>
-      <div className="toggle-switch">
-        <label className="switch-label">
-          <input 
-          type="checkbox" 
-          className="checkbox" 
-          checked={theme === "dark"}
-          onChange={toggleTheme}
-          />
-          <span className="slider"></span>
-        </label>
-      </div>
+      <button class="setting-btn" onClick={() => setShowSettings(!showSettings)}>
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar1"></span>
+      </button>
+
+      {showSettings && (
+        <div className="settings-dropdown">
+          <p className="settings-title">Settings</p>
+          <div className="theme-toggle-container">
+          <p>Dark Mode</p>
+          <label className="switch-label">
+            <input
+              type="checkbox"
+              className="checkbox"
+              checked={theme === "dark"}
+              onChange={toggleTheme}
+            />
+            <span className="slider"></span>
+          </label>
+        </div>
+        </div>
+      )}
       <form onSubmit={handleSubmit} className="form-container">
         <h1 className="form-title">Balance</h1>
         <p className="form-balance">${balance}</p>
@@ -89,10 +99,7 @@ const InputField = () => {
           className="input-field"
         />
         <select
-          value={category}
-          onChange={handleChangeCategory}
-          className="input-field-list"
-        >
+          value={category} onChange={handleChangeCategory} className="input-field-list">
           <option value="">Category</option>
           <option value="Food">Food</option>
           <option value="Transport">Transport</option>
