@@ -400,3 +400,7 @@ body {
 [data-theme="dark"] .checkbox:checked + .slider {
   background: #ffffff;
 }
+
+.form-balance.negative {
+  color: red;
+}
