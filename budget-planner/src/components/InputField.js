@@ -151,16 +151,14 @@ const InputField = () => {
       </form>
       <div className="transactions-container">
         <h2>History</h2>
-        {transactions.length === 0 ? (
-          <p>No History Yet.</p>
-        ) : (
+        {transactions.length === 0 ? (<p>No History Yet.</p>) : (
           <ul>
             {transactions.map((transactions, index) => (
               <li key={index} className="transaction-item">
-              <p>{transactions.date}</p>
-              <p>{transactions.category}</p>
-              <p>${transactions.amount}</p>
-            </li>
+                <p>{transactions.date}</p>
+                <p>{transactions.category}</p>
+                <p>${transactions.amount}</p>
+              </li>
             ))}
           </ul>
         )}
