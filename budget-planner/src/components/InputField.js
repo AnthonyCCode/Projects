@@ -13,6 +13,7 @@ const InputField = () => {
   const [enteredBalance, setEnteredBalance] = useState("");
   const [theme, setTheme] = useState("light");
   const [showSettings, setShowSettings] = useState(false);
+  const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -42,8 +43,8 @@ const InputField = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (enteredBalance === "" || amount === "" || category === ""){
-      alert("BOT::::Please fill in all fields");
+    if (enteredBalance === "" || amount === "" || category === "") {
+      alert("Please fill in all fields");
       return;
     }
 
@@ -54,6 +55,14 @@ const InputField = () => {
     console.log("Category Entered:", category);
     console.log("Amount Entered", amount);
     console.log("Date Entered:", date);
+
+    const newTransaction = {
+      date,
+      category,
+      amount: Number(amount),
+    };
+
+    setTransactions([...transactions, newTransaction]); //adds to the list
 
     setEnteredBalance("");
     setCategory("");
@@ -98,9 +107,9 @@ const InputField = () => {
       )}
       <form onSubmit={handleSubmit} className="form-container">
         <h1 className="form-title">Balance</h1>
-        <p className={`form-balance ${balance < 0 ? 'negative' : ''}`}>
+        <p className={`form-balance ${balance < 0 ? "negative" : ""}`}>
           ${balance}
-          </p>
+        </p>
         <input
           type="number"
           value={enteredBalance}
@@ -140,6 +149,22 @@ const InputField = () => {
           </span>
         </button>
       </form>
+      <div className="transactions-container">
+        <h2>History</h2>
+        {transactions.length === 0 ? (
+          <p>No History Yet.</p>
+        ) : (
+          <ul>
+            {transactions.map((transactions, index) => (
+              <li key={index} className="transaction-item">
+              <p>{transactions.date}</p>
+              <p>{transactions.category}</p>
+              <p>${transactions.amount}</p>
+            </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
