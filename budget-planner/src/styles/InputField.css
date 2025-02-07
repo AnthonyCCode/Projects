@@ -242,6 +242,7 @@
   --button-hover: #383838;
   --input-border: #555;
   --input-focus-border: #888;
+
 }
 
 body {
@@ -406,7 +407,7 @@ body {
 }
 
 .transactions-container {
-  max-width: 400px;
+  max-width: 600px;
   margin: 40px auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -461,4 +462,103 @@ ul {
   color: #000000;
   margin-top: 30px;
   font-weight: bold;
+}
+
+.transaction-item span {
+  font-weight: bold;
+  color: #000000;
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+.edit-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  transition-duration: 0.3s;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none !important;
+  margin-top: 20px;
+}
+
+.edit-svgIcon {
+  width: 17px;
+  transition-duration: 0.3s;
+}
+
+.edit-svgIcon path {
+  fill: white;
+}
+
+.edit-button:hover {
+  width: 120px;
+  border-radius: 50px;
+  transition-duration: 0.3s;
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.edit-button:hover .edit-svgIcon {
+  width: 20px;
+  transition-duration: 0.3s;
+  transform: translateY(60%);
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
+.edit-button::before {
+  display: none;
+  content: "Edit";
+  color: white;
+  transition-duration: 0.3s;
+  font-size: 2px;
+}
+
+.edit-button:hover::before {
+  display: block;
+  padding-right: 10px;
+  font-size: 13px;
+  opacity: 1;
+  transform: translateY(0px);
+  transition-duration: 0.3s;
+}
+
+
+.btn-del {
+  background-color: transparent;
+  position: relative;
+  border: none;
+  margin-top: 20px;
+  padding-right: 10px;
+}
+
+.icon {
+  transform: scale(1.7);
+  transition: .2s linear;
+}
+
+.btn-del:hover > .icon {
+  transform: scale(1.5);
+}
+
+.btn-del:hover > .icon path {
+  fill: rgb(168, 7, 7);
+}
+
+.btn-del:hover::after {
+  visibility: visible;
+  opacity: 1;
+  top: -160%;
 }
