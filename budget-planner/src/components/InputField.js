@@ -14,6 +14,7 @@ const InputField = () => {
   const [theme, setTheme] = useState("light");
   const [showSettings, setShowSettings] = useState(false);
   const [transactions, setTransactions] = useState([]);
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -22,6 +23,10 @@ const InputField = () => {
       document.documentElement.setAttribute("data-theme", savedTheme);
     }
   }, []);
+
+  const handleChangeDescription = (event) => {
+    setDescription(event.target.value);
+  }
 
   const handleChangeDate = (event) => {
     setDate(event.target.value);
@@ -56,10 +61,11 @@ const InputField = () => {
         const response = await fetch("http://127.0.0.1:5000/categorize", {
           method: "POST",
           headers: { "Content-type": "application/json"},
-          body: JSON.stringify({ description: category })
+          body: JSON.stringify({ description: description })
         });
         const data = await response.json();
         predictedCategory = data.category;
+        console.log("Predicted Category:", predictedCategory); 
       } catch (error){
         console.error("Error Fetching category:", error);
       }
@@ -70,7 +76,7 @@ const InputField = () => {
 
     const newTransaction = {
       date,
-      category,
+      category: predictedCategory,
       amount: Number(amount),
     };
 
@@ -80,6 +86,7 @@ const InputField = () => {
     setCategory("");
     setAmount("");
     setDate("");
+    setDescription("");
   };
 
   const toggleTheme = () => {
@@ -87,10 +94,6 @@ const InputField = () => {
     setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
-  };
-
-  const editExpense = (index) => {
-    console.log("Editing Expense", index);
   };
 
   const deleteExpense = (index) => {
@@ -154,6 +157,13 @@ const InputField = () => {
           <option value="Entertainment">Entertainment</option>
           <option value="Other">Other</option>
         </select>
+        <input 
+          type="text"
+          value={description}
+          onChange={handleChangeDescription}
+          placeholder="Expense Description"
+          className="input-field"
+        />
         <input
           type="number"
           value={amount}
@@ -192,7 +202,7 @@ const InputField = () => {
                     height="17.5"
                     width="15"
                     xmlns="http://www.w3.org/2000/svg"
-                    class="icon"
+                    className="icon"
                   >
                     <path
                       transform="translate(-2.5 -1.25)"
