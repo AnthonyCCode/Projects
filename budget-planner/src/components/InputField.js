@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/InputField.css";
-
-//balance and input fields on the left side, with the charts and what not on the right side
-//have AI recommendations on like how much you should be spending with the balance
-//userprofile sign in sign out ?? python backend???
+import { categorizeExpense } from "../utils/api"
 
 const InputField = () => {
   const [date, setDate] = useState("");
@@ -15,6 +12,12 @@ const InputField = () => {
   const [showSettings, setShowSettings] = useState(false);
   const [transactions, setTransactions] = useState([]);
   const [description, setDescription] = useState("");
+
+  const handleCategorization = async () => {
+    if (!description) return;
+    const predictedCategory = await categorizeExpense(description);
+    setCategory(predictedCategory);
+  };
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -56,7 +59,7 @@ const InputField = () => {
     let predictedCategory = category;
 
     //fetching AI
-    if (category === "Other") {
+    if (category === "Other" && amount !== "") {
       try {
         const response = await fetch("http://127.0.0.1:5000/categorize", {
           method: "POST",
@@ -215,6 +218,17 @@ const InputField = () => {
             ))}
           </ul>
         )}
+        <div>
+      {/* <input
+        type="text"
+        placeholder="AI TEXT"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+      <button onClick={handleCategorization}>Categorize</button>
+
+      {category && <div className="form-balance">Category: {category}</div>} */}
+    </div>
       </div>
     </div>
   );
