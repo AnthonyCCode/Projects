@@ -30,4 +30,8 @@ Storage: Model and vectorizer are saved using Joblib for quick loading.
 
 📸 Screenshots
 ![1](https://github.com/user-attachments/assets/02e9d392-f221-4fe5-9957-0ef6d25a750a)
-
+General Overview of the UI, using React.js.
+![2](https://github.com/user-attachments/assets/daf07def-4ffd-4317-8ecf-f816996ff5b9)
+In the description field, we enter what the details of the transaction is that we want the AI model to predict which category it belongs to, in this case; it's "Movie Tickets".
+![3](https://github.com/user-attachments/assets/a839f52e-9035-4f6b-98e8-3db783350ebc)
+The AI model predicted that the category "Movie Tickets" belongs in falls into "Entertainment"
