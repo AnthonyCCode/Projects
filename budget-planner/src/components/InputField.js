@@ -13,12 +13,6 @@ const InputField = () => {
   const [transactions, setTransactions] = useState([]);
   const [description, setDescription] = useState("");
 
-  const handleCategorization = async () => {
-    if (!description) return;
-    const predictedCategory = await categorizeExpense(description);
-    setCategory(predictedCategory);
-  };
-
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
@@ -27,50 +21,29 @@ const InputField = () => {
     }
   }, []);
 
-  const handleChangeDescription = (event) => {
-    setDescription(event.target.value);
-  }
-
-  const handleChangeDate = (event) => {
-    setDate(event.target.value);
-  };
-
-  const handleChangeCategory = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const handleChangeAmount = (event) => {
-    setAmount(event.target.value);
-  };
-
-  const handleChangeBalance = (event) => {
-    setEnteredBalance(event.target.value);
-  };
-
-  //handles the submit of the states
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (enteredBalance === "" || amount === "" || category === "") {
+    if (enteredBalance === "" || amount === "" || description === "") {
       alert("Please fill in all fields");
       return;
     }
 
     let predictedCategory = category;
 
-    //fetching AI
-    if (category === "Other" && amount !== "") {
+    // Fetch AI category only if the user hasn't selected one
+    if (!category || category === "Other") {
       try {
         const response = await fetch("http://127.0.0.1:5000/categorize", {
           method: "POST",
-          headers: { "Content-type": "application/json"},
+          headers: { "Content-type": "application/json" },
           body: JSON.stringify({ description: description })
         });
         const data = await response.json();
         predictedCategory = data.category;
-        console.log("Predicted Category:", predictedCategory); 
-      } catch (error){
-        console.error("Error Fetching category:", error);
+        console.log("Predicted Category:", predictedCategory);
+      } catch (error) {
+        console.error("Error fetching category:", error);
       }
     }
 
@@ -81,9 +54,10 @@ const InputField = () => {
       date,
       category: predictedCategory,
       amount: Number(amount),
+      description,
     };
 
-    setTransactions([...transactions, newTransaction]); //adds to the list
+    setTransactions([...transactions, newTransaction]);
 
     setEnteredBalance("");
     setCategory("");
@@ -104,10 +78,9 @@ const InputField = () => {
     const updatedTransactions = transactions.filter((_, i) => i !== index);
 
     setBalance((prevBalance) => prevBalance + transactionsToDelete.amount);
-
     setTransactions(updatedTransactions);
-
   };
+
   return (
     <div>
       <button
@@ -136,6 +109,7 @@ const InputField = () => {
           </div>
         </div>
       )}
+
       <form onSubmit={handleSubmit} className="form-container">
         <h1 className="form-title">Balance</h1>
         <p className={`form-balance ${balance < 0 ? "negative" : ""}`}>
@@ -144,13 +118,13 @@ const InputField = () => {
         <input
           type="number"
           value={enteredBalance}
-          onChange={handleChangeBalance}
+          onChange={(e) => setEnteredBalance(e.target.value)}
           placeholder="Enter your Balance"
           className="input-field"
         />
         <select
           value={category}
-          onChange={handleChangeCategory}
+          onChange={(e) => setCategory(e.target.value)}
           className="input-field-list"
         >
           <option value="">Category</option>
@@ -158,26 +132,26 @@ const InputField = () => {
           <option value="Transport">Transport</option>
           <option value="Bills">Bills</option>
           <option value="Entertainment">Entertainment</option>
-          <option value="Other">Other</option>
+          <option value="Other">Other (AI Categorization)</option>
         </select>
-        <input 
+        <input
           type="text"
           value={description}
-          onChange={handleChangeDescription}
+          onChange={(e) => setDescription(e.target.value)}
           placeholder="Expense Description"
           className="input-field"
         />
         <input
           type="number"
           value={amount}
-          onChange={handleChangeAmount}
+          onChange={(e) => setAmount(e.target.value)}
           placeholder="Expense Amount"
           className="input-field"
         />
         <input
           type="date"
           value={date}
-          onChange={handleChangeDate}
+          onChange={(e) => setDate(e.target.value)}
           className="input-field"
         />
         <button type="submit" className="submit-button">
@@ -187,18 +161,20 @@ const InputField = () => {
           </span>
         </button>
       </form>
+
       <div className="transactions-container">
         <h2>History</h2>
         {transactions.length === 0 ? (
           <p>No History Yet.</p>
         ) : (
           <ul>
-            {transactions.map((transactions, index) => (
+            {transactions.map((transaction, index) => (
               <li key={index} className="transaction-item">
                 <span>{index + 1}</span>
-                <p>{transactions.date}</p>
-                <p>{transactions.category}</p>
-                <p>${transactions.amount}</p>
+                <p>{transaction.date}</p>
+                <p>{transaction.category}</p>
+                <p>{transaction.description}</p>
+                <p>${transaction.amount}</p>
                 <button className="btn-del" onClick={() => deleteExpense(index)}>
                   <svg
                     viewBox="0 0 15 17.5"
@@ -218,17 +194,6 @@ const InputField = () => {
             ))}
           </ul>
         )}
-        <div>
-      {/* <input
-        type="text"
-        placeholder="AI TEXT"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <button onClick={handleCategorization}>Categorize</button>
-
-      {category && <div className="form-balance">Category: {category}</div>} */}
-    </div>
       </div>
     </div>
   );

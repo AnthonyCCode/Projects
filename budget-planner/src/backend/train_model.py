@@ -8,18 +8,22 @@ import joblib
 data = {
     "Description": [
         "Grocery store", "Bus ticket", "Electricity bill", "Movie ticket", 
-        "Coffee at Starbucks", "Uber ride", "Cinema ticket", "Internet bill"
+        "Coffee at Starbucks", "Uber ride", "Cinema ticket", "Internet bill",
+        "Dinner at a restaurant", "Subway pass", "Monthly gas bill", "Concert ticket",
+        "Taxi ride", "Gas station fuel", "Netflix subscription", "Water bill"
     ],
     "Category": [
-        "Food", "Transport", "Bills", "Entertainment", 
-        "Food", "Transport", "Entertainment", "Bills"
+        "Food", "Transport", "Bills", "Entertainment",
+        "Food", "Transport", "Entertainment", "Bills",
+        "Food", "Transport", "Bills", "Entertainment",
+        "Transport", "Transport", "Entertainment", "Bills"
     ]
 }
 
 df = pd.DataFrame(data)
 
 
-vectorizer = TfidfVectorizer(stop_words='english')
+vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1,2))
 X = vectorizer.fit_transform(df['Description'])
 
 y = df['Category']
