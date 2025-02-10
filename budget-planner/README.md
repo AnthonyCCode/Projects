@@ -20,6 +20,7 @@ Budget-Planner is a smart budgeting application that leverages AI-driven expense
 
 🔹 Deployment: Flask-CORS, Joblib, Local Storage
 
+
 🎯 How It Works
 1️⃣ User Inputs Transaction – The user enters an expense description.
 2️⃣ AI Model Analyzes Description – The system processes the input using TF-IDF vectorization.
