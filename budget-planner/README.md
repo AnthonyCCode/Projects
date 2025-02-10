@@ -15,7 +15,9 @@ Budget-Planner is a smart budgeting application that leverages AI-driven expense
 🔹 Front-End: React.js, JavaScript, HTML5, CSS3
 
 🔹 Back-End: Flask, Python, REST APIs
+
 🔹 Machine Learning: Scikit-learn, TfidfVectorizer, RandomForestClassifier
+
 🔹 Deployment: Flask-CORS, Joblib, Local Storage
 
 🎯 How It Works
