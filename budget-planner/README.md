@@ -36,4 +36,4 @@ In the description field, we enter what the details of the transaction is that w
 
 
 ![3](https://github.com/user-attachments/assets/a839f52e-9035-4f6b-98e8-3db783350ebc)
-The AI model predicted that the category "Movie Tickets" belongs in falls into "Entertainment"
+The AI model predicted that the details of the transaction with is, "Movie Tickets" falls into the category; "Entertainment"
