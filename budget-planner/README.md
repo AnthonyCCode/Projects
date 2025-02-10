@@ -36,9 +36,11 @@ In the description field, we enter what the details of the transaction is that w
 
 
 ![3](https://github.com/user-attachments/assets/a839f52e-9035-4f6b-98e8-3db783350ebc)
+
 In this screenshot, we have the item to be, "Movie Tickets" the AI model has placed this item into the category; "Entertainment", predicting correctly.
 
 ![4](https://github.com/user-attachments/assets/5f122b65-93a6-4807-ba07-b38ddd8dfb08)
+
 In this screenshot, we have the item to be, "Coffee at Starbucks", the AI model has placed this item into the category; "Food", predicting correctly.
 
 ![image](https://github.com/user-attachments/assets/074a2157-4096-4481-87ea-1e39d38e174e)
