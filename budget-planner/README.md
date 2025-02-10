@@ -41,12 +41,14 @@ Classifier: RandomForestClassifier trained on labeled expense categories.
 Storage: Model and vectorizer are saved using Joblib for quick loading.
 
 🏃 Getting Started
+
 1️⃣ Clone the Repository
 bash
 Copy
 Edit
 git clone https://github.com/your-username/budget-planner.git
 cd budget-planner
+
 2️⃣ Set Up the Backend
 bash
 Copy
@@ -55,6 +57,7 @@ cd src/backend
 pip install -r requirements.txt
 python app.py
 3️⃣ Set Up the Frontend
+
 bash
 Copy
 Edit
@@ -62,6 +65,7 @@ cd src/frontend
 npm install
 npm start
 4️⃣ Train the AI Model (Optional)
+
 bash
 Copy
 Edit
