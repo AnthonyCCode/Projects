@@ -31,7 +31,7 @@ const InputField = () => {
 
     let predictedCategory = category;
 
-    // Fetch AI category only if the user hasn't selected one
+    // fetch AI category under AI Categorizatio
     if (!category || category === "Other") {
       try {
         const response = await fetch("http://127.0.0.1:5000/categorize", {
@@ -127,12 +127,12 @@ const InputField = () => {
           onChange={(e) => setCategory(e.target.value)}
           className="input-field-list"
         >
-          <option value="">Category</option>
+          {/* <option value="">Category</option>
           <option value="Food">Food</option>
           <option value="Transport">Transport</option>
           <option value="Bills">Bills</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Other">Other (AI Categorization)</option>
+          <option value="Entertainment">Entertainment</option> */}
+          <option value="Other">AI Categorization</option>
         </select>
         <input
           type="text"
@@ -172,7 +172,7 @@ const InputField = () => {
               <li key={index} className="transaction-item">
                 <span>{index + 1}</span>
                 <p>{transaction.date}</p>
-                <p>{transaction.category}</p>
+                <p>AI Prediction: {transaction.category}</p>
                 <p>{transaction.description}</p>
                 <p>${transaction.amount}</p>
                 <button className="btn-del" onClick={() => deleteExpense(index)}>

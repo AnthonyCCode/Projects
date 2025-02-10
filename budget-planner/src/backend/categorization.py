@@ -8,21 +8,6 @@ CORS(app)
 model = joblib.load('models/expense_model.pkl')
 vectorizer = joblib.load('models/vectorizer.pkl')
 
-# CATEGORY_KEYWORDS = {
-#     "Food": ["restaurant", "grocery", "coffee", "snack"],
-#     "Transport": ["bus", "train", "uber", "fuel", "gas"],
-#     "Bills": ["electricity", "water", "internet", "phone"],
-#     "Entertainment": ["movie", "game", "concert", "club"],
-#     "Other": [],
-# }
-
-# def categorization_expense(description):
-#     description = description.lower()
-#     for category, keywords in CATEGORY_KEYWORDS.items():
-#         if any(keyword in description for keyword in keywords):
-#             return category
-#     return "Other"
-
 @app.route("/categorize", methods=["POST"])
 def categorize():
     data = request.json
