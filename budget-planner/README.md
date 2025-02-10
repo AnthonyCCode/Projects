@@ -56,16 +56,16 @@ Edit
 cd src/backend
 pip install -r requirements.txt
 python app.py
-3️⃣ Set Up the Frontend
 
+3️⃣ Set Up the Frontend
 bash
 Copy
 Edit
 cd src/frontend
 npm install
 npm start
-4️⃣ Train the AI Model (Optional)
 
+4️⃣ Train the AI Model (Optional)
 bash
 Copy
 Edit
