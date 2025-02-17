@@ -14,7 +14,6 @@ def categorize():
     description = data.get("description", "")
     transformed_description = vectorizer.transform([description])
     predicted_category = model.predict(transformed_description)[0]
-    # category = categorization_expense(description)
     return jsonify({"category": predicted_category})
 
 if __name__ == "__main__":
