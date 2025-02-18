@@ -3,7 +3,7 @@ from flask_cors import CORS
 from deep_translator import GoogleTranslator
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  
 
 @app.route('/translate', methods=['POST'])
 def translate_text():

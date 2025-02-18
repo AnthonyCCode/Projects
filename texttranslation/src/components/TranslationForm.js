@@ -32,7 +32,7 @@ const TranslationForm = () => {
       <h2 className={styles.heading}>Google Extension Translator</h2>
       <textarea
         className={styles.textArea}
-        placeholder="Enter Text..."
+        placeholder="Translate your Text..."
         value={text}
         onChange={setTargetText}
       />
