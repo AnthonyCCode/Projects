@@ -1,4 +1,5 @@
 import TranslationForm from "./components/TranslationForm";
+import React from 'react';
 
 function App() {
   return (

@@ -29,7 +29,7 @@ const TranslationForm = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>AI-Powered Translator</h2>
+      <h2 className={styles.heading}>Google Extension Translator</h2>
       <textarea
         className={styles.textArea}
         placeholder="Enter Text..."
