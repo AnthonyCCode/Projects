@@ -6,8 +6,13 @@ const TranslationForm = () => {
   const [text, setText] = useState("");
   const [targetLang, setTargetLang] = useState("fr");
   const [translatedText, setTranslatedText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleTranslate = async () => {
+    if(!text.trim()) return;
+    setLoading(true);
+    setTranslatedText("");
+
     try {
       const response = await axios.post("http://127.0.0.1:5000/translate", {
         text,
@@ -17,37 +22,32 @@ const TranslationForm = () => {
     } catch (error) {
       console.log("Translation Error:", error);
     }
-  };
 
-  const setLang = (event) => {
-    setTargetLang(event.target.value);
+    setLoading(false);
   };
-
-  const setTargetText = (e) => {
-    setText(e.target.value);
-  };
-
+  
   return (
     <div className={styles.container}>
-      <h2 className={styles.heading}>Google Extension Translator</h2>
+      <h2 className={styles.heading}>Translator</h2>
       <textarea
         className={styles.textArea}
         placeholder="Translate your Text..."
         value={text}
-        onChange={setTargetText}
+        onChange={(e) => setText(e.target.value)}
       />
       <select
         className={styles.selectBox}
         value={targetLang}
-        onChange={setLang}
+        onChange={(e) => setTargetLang(e.target.value)}
       >
         <option value="fr">French</option>
         <option value="es">Spanish</option>
         <option value="de">German</option>
       </select>
-      <button className={styles.button} onClick={handleTranslate}>
-        Translate
+      <button className={styles.button} onClick={handleTranslate} disabled={loading}>
+        {loading ? "Translating..." : "Translate"}
       </button>
+      {loading && <p className={styles.loading}>⏳ Translating...</p>}
       {translatedText && (
         <p className={styles.translationOutput}>{translatedText}</p>
       )}
