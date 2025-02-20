@@ -16,15 +16,23 @@ A lightweight Chrome extension that allows users to translate text directly from
 📂 Project Structure
 
 text-translation-extension/
+
 │── backend/                # Flask backend for translation
+
 │   ├── app.py              # API to handle translation
+
 │   ├── requirements.txt    # Dependencies for the backend
+
 │── chrome-extension/       # Chrome extension source
+
 │   ├── manifest.json       # Extension configuration
+
 │   ├── popup.html          # UI for the extension
+
 │   ├── popup.js            # Handles user input & API calls
+
 │   ├── styles.css          # Styling for the popup
-│── README.md               # Project documentation
+
 
 
 🛠 Tech Stack
