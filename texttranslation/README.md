@@ -1,3 +1,5 @@
+https://youtu.be/Z_WPe7c4_V4
+
 🌍 Text Translation Chrome Extension
 
 A lightweight Chrome extension that allows users to translate text directly from their browser. Built with React and Python, this extension provides a seamless translation experience.
