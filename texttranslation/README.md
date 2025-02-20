@@ -51,5 +51,20 @@ Click Load Unpacked
 Select the chrome-extension/ folder
 
 📸 Screenshots
+![image](https://github.com/user-attachments/assets/6f3cdb33-7dea-486e-9a1e-7b68b07b9f97)
+SHowcasing the Google Extension in the Extension's
+
+![image](https://github.com/user-attachments/assets/35d47a80-92cd-4d98-95dd-2c82fda98000)
+Popup for the Translator 
+
+![image](https://github.com/user-attachments/assets/29e0cc60-b971-4b2e-91d2-b2d58036d7f2)
+Text being translated
+
+
+
+
+
+
+
 
 
